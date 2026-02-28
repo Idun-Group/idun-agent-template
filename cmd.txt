@@ -1,0 +1,10 @@
+set -o allexport                 
+source .env
+set +o allexport
+
+adk web --port 8010
+
+idun agent serve --source manager
+
+Give me the information on this website: https://www.idun-group.com/idun-agent-platform
+

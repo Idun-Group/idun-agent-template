@@ -1,0 +1,34 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "adk web",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/adk",
+            "args": [
+                "web",
+                "--port",
+                "8010"
+            ],
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env",
+            "justMyCode": false
+        },
+        {
+            "name": "idun agent serve",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/idun",
+            "args": [
+                "agent",
+                "serve",
+                "--source",
+                "manager"
+            ],
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env",
+            "justMyCode": false
+        }
+    ]
+}

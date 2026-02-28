@@ -1,0 +1,4 @@
+idun-agent-engine==0.4.0
+google-adk==1.19.0
+dotenv==0.9.9
+google-genai==1.52.0

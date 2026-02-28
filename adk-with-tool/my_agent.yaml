@@ -1,0 +1,17 @@
+agent:
+  config:
+    agent: /Users/geoffreyharrazi/Documents/GitHub/demo-adk-idun-agent/agent/agent.py:root_agent
+    app_name: my_agent
+    memory_service:
+      type: in_memory
+    name: my-agent
+    session_service:
+      type: in_memory
+  type: ADK
+guardrails:
+  input: []
+  output: []
+mcp_servers: []
+server:
+  api:
+    port: 8008

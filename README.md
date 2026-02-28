@@ -1,2 +1,2 @@
-# idun-agent-template
-Collection of agents templates and examples powered by Idun Platform
+# demo-adk-idun-agent
+Demo ADK agent with Idun Platform
