@@ -2,21 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "adk web",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${workspaceFolder}/.venv/bin/adk",
-            "args": [
-                "web",
-                "--port",
-                "8010"
-            ],
-            "console": "integratedTerminal",
-            "envFile": "${workspaceFolder}/.env",
-            "justMyCode": false
-        },
-        {
-            "name": "idun agent serve",
+            "name": "Serve adk-with-tool agent",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/.venv/bin/idun",
@@ -27,7 +13,88 @@
                 "manager"
             ],
             "console": "integratedTerminal",
-            "envFile": "${workspaceFolder}/.env",
+            "cwd": "${workspaceFolder}/adk-with-tool",
+            "envFile": "${workspaceFolder}/adk-with-tool/.env",
+            "justMyCode": false
+        },
+        {
+            "name": "Serve langgraph-simple agent",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/idun",
+            "args": [
+                "agent",
+                "serve",
+                "--source",
+                "manager"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/langgraph-simple",
+            "envFile": "${workspaceFolder}/langgraph-simple/.env",
+            "justMyCode": false
+        },
+        {
+            "name": "Serve langgraph-tool agent",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/idun",
+            "args": [
+                "agent",
+                "serve",
+                "--source",
+                "manager"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/langgraph-tool",
+            "envFile": "${workspaceFolder}/langgraph-tool/.env",
+            "justMyCode": false
+        },
+        {
+            "name": "Serve langgraph-tool-node agent",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/idun",
+            "args": [
+                "agent",
+                "serve",
+                "--source",
+                "manager"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/langgraph-tool-node",
+            "envFile": "${workspaceFolder}/langgraph-tool-node/.env",
+            "justMyCode": false
+        },
+        {
+            "name": "Serve langgraph-tool-local agent",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/idun",
+            "args": [
+                "agent",
+                "serve",
+                "--source",
+                "manager"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/langgraph-tool-local",
+            "envFile": "${workspaceFolder}/langgraph-tool-local/.env",
+            "justMyCode": false
+        },
+        {
+            "name": "Serve langgraph-structured agent",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/idun",
+            "args": [
+                "agent",
+                "serve",
+                "--source",
+                "manager"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/langgraph-structured",
+            "envFile": "${workspaceFolder}/langgraph-structured/.env",
             "justMyCode": false
         }
     ]

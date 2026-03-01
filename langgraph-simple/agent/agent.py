@@ -1,17 +1,15 @@
 import os
-from typing import TypedDict
 
 from dotenv import load_dotenv
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langgraph.graph import END, START, StateGraph
+from langgraph.graph import END, START, MessagesState, StateGraph
 
 load_dotenv()
 
 
-class AgentState(TypedDict):
-    user_input: str
+class AgentState(MessagesState):
     plan: str
-    response: str
 
 
 llm = ChatGoogleGenerativeAI(
@@ -20,27 +18,36 @@ llm = ChatGoogleGenerativeAI(
 )
 
 
-def analyze_step(state: AgentState) -> AgentState:
+def analyze_step(state: AgentState) -> dict[str, str]:
     """Step 1: create a short plan before answering."""
-    planning_prompt = (
-        "You are planning an answer.\n"
-        "Create a concise 2-3 bullet point plan to answer the user request.\n\n"
-        f"User request: {state['user_input']}"
-    )
-    plan = llm.invoke(planning_prompt).content
+    user_message = str(state["messages"][-1].content)
+    plan_prompt = [
+        SystemMessage(content="You are planning an answer."),
+        HumanMessage(
+            content=(
+                "Create a concise 2-3 bullet point plan to answer the user message.\n\n"
+                f"User message: {user_message}"
+            )
+        ),
+    ]
+    plan = llm.invoke(plan_prompt).content
     return {"plan": str(plan)}
 
 
-def answer_step(state: AgentState) -> AgentState:
+def answer_step(state: AgentState) -> dict[str, list[AIMessage]]:
     """Step 2: generate final response from the plan."""
-    answer_prompt = (
-        "You are a helpful assistant.\n"
-        "Use the plan to answer the user clearly and briefly.\n\n"
-        f"Plan:\n{state['plan']}\n\n"
-        f"User request: {state['user_input']}"
-    )
+    answer_prompt = [
+        SystemMessage(content="You are a helpful assistant."),
+        *state["messages"],
+        HumanMessage(
+            content=(
+                "Use this plan to answer clearly and briefly.\n\n"
+                f"Plan:\n{state['plan']}"
+            )
+        ),
+    ]
     response = llm.invoke(answer_prompt).content
-    return {"response": str(response)}
+    return {"messages": [AIMessage(content=str(response))]}
 
 
 workflow = StateGraph(AgentState)
@@ -51,3 +58,4 @@ workflow.add_edge("analyze", "answer")
 workflow.add_edge("answer", END)
 
 graph = workflow.compile()
+

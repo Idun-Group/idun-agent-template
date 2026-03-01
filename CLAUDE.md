@@ -36,3 +36,33 @@ If a change impacts how users run examples, update `README.md` before finishing.
 - verify paths and commands in docs are correct
 - ensure the template can run with listed dependencies
 - keep naming consistent with existing examples
+
+## LangGraph + Idun tool pattern
+
+When building LangGraph agents that use Idun tools (`get_langchain_tools`), follow this pattern:
+
+1. Use `MessagesState` and standard tool-routing nodes:
+   - model node (`call_model`)
+   - tools node (`tools` via `ToolNode`)
+   - edges: `START -> call_model -> tools_condition -> tools -> call_model`
+2. Do not call `asyncio.run()` at module import time in agent modules.
+   - Idun/FastAPI can import the module inside an active event loop.
+3. Load Idun tools with `await get_langchain_tools()` inside async node execution (or via an async cache helper).
+4. Prefer async node functions with `ainvoke` when awaiting tool/model calls.
+5. If caching tools, use an async-safe module cache helper (e.g., `_get_tools`) rather than starting a new loop.
+
+Reference implementation shape:
+
+```python
+async def _get_tools():
+    ...
+
+async def call_model(state: MessagesState):
+    tools = await _get_tools()
+    response = await model.bind_tools(tools).ainvoke(state["messages"])
+    return {"messages": [response]}
+
+async def call_tools(state: MessagesState):
+    tools = await _get_tools()
+    return await ToolNode(tools).ainvoke(state)
+```

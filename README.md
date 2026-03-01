@@ -27,6 +27,10 @@ With Idun Platform, your agent can be exposed as a production-ready service with
 
 - `adk-with-tool/`: ADK example agent
 - `langgraph-simple/`: minimal LangGraph example agent
+- `langgraph-tool/`: LangGraph agent using Idun tools (manual tool-call workaround)
+- `langgraph-tool-node/`: LangGraph agent using Idun tools with `ToolNode`
+- `langgraph-tool-local/`: LangGraph agent combining local math tools + Idun tools
+- `langgraph-structured/`: structured input/output LangGraph internal system agent
 
 Each example includes:
 - agent code in `agent/`
@@ -36,7 +40,7 @@ Each example includes:
 
 ## Quick start
 
-1. Pick a template folder (for example `langgraph-simple/` or `adk-with-tool/`).
+1. Pick a template folder (for example `langgraph-simple/`, `langgraph-tool/`, `langgraph-tool-local/`, or `langgraph-structured/`).
 2. Install dependencies:
    ```bash
    pip install -r requirements.txt

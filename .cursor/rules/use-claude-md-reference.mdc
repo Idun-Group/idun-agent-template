@@ -1,0 +1,14 @@
+---
+description: Use CLAUDE.md as repository guidance baseline
+alwaysApply: true
+---
+
+# Use CLAUDE.md First
+
+Before implementing or refactoring agent code in this repository, read `CLAUDE.md` and follow its guidance.
+
+When working on LangGraph agents with Idun tools, follow the `LangGraph + Idun tool pattern` section in `CLAUDE.md` for:
+
+- async tool loading with `get_langchain_tools`
+- `MessagesState` + `ToolNode` routing shape
+- avoiding `asyncio.run()` at module import time

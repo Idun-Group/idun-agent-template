@@ -1,0 +1,17 @@
+agent:
+  config:
+    agent: /Users/geoffreyharrazi/Documents/GitHub/idun-agent-template/langgraph-tool-node/agent/agent.py:workflow
+    app_name: my_agent
+    memory_service:
+      type: in_memory
+    name: my-agent
+    session_service:
+      type: in_memory
+  type: LANGGRAPH
+guardrails:
+  input: []
+  output: []
+mcp_servers: []
+server:
+  api:
+    port: 8008
