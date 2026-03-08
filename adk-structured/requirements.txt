@@ -1,0 +1,4 @@
+idun-agent-engine==0.4.0
+google-adk==1.19.0
+google-genai==1.52.0
+pydantic>=2,<3

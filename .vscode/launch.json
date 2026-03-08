@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Serve adk-with-tool agent",
+            "name": "Serve adk-tool agent",
             "type": "debugpy",
             "request": "launch",
             "program": "${workspaceFolder}/.venv/bin/idun",
@@ -13,8 +13,24 @@
                 "manager"
             ],
             "console": "integratedTerminal",
-            "cwd": "${workspaceFolder}/adk-with-tool",
-            "envFile": "${workspaceFolder}/adk-with-tool/.env",
+            "cwd": "${workspaceFolder}/adk-tool",
+            "envFile": "${workspaceFolder}/adk-tool/.env",
+            "justMyCode": false
+        },
+        {
+            "name": "Serve adk-structured agent",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/idun",
+            "args": [
+                "agent",
+                "serve",
+                "--source",
+                "manager"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/adk-structured",
+            "envFile": "${workspaceFolder}/adk-structured/.env",
             "justMyCode": false
         },
         {
