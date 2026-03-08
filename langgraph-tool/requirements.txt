@@ -1,6 +1,6 @@
---index-url https://test.pypi.org/simple/
---extra-index-url https://pypi.org/simple/
-idun-agent-engine==0.4.7.dev20260228190909
+# --index-url https://test.pypi.org/simple/
+# --extra-index-url https://pypi.org/simple/
+idun-agent-engine
 langgraph
 langchain-google-genai
 python-dotenv
