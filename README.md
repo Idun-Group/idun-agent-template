@@ -35,6 +35,7 @@ With Idun Platform, your agent can be exposed as a production-ready service with
 - `langgraph-tool-local/`: LangGraph agent combining local math tools + Idun tools
 - `langgraph-structured/`: structured input/output LangGraph internal system agent
 - `langgraph-editorial-loop/`: LangGraph multi-step researcher/writer/reviewer loop agent
+- `langgraph-copy-paste/`: simple LangGraph file copy example using local folders
 
 Each example includes:
 
@@ -45,7 +46,7 @@ Each example includes:
 
 ## Quick start
 
-1. Pick a template folder (for example `adk-tool/`, `adk-structured/`, `langgraph-simple/`, `langgraph-tool/`, `langgraph-tool-local/`, `langgraph-structured/`, or `langgraph-editorial-loop/`).
+1. Pick a template folder (for example `adk-tool/`, `adk-structured/`, `langgraph-simple/`, `langgraph-tool/`, `langgraph-tool-local/`, `langgraph-structured/`, `langgraph-editorial-loop/`, or `langgraph-copy-paste/`).
 2. Install dependencies:
 
    ```bash

@@ -128,6 +128,22 @@
             "cwd": "${workspaceFolder}/langgraph-editorial-loop",
             "envFile": "${workspaceFolder}/langgraph-editorial-loop/.env",
             "justMyCode": false
+        },
+        {
+            "name": "Serve langgraph-copy-paste agent",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/idun",
+            "args": [
+                "agent",
+                "serve",
+                "--source",
+                "manager"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/langgraph-copy-paste",
+            "envFile": "${workspaceFolder}/langgraph-copy-paste/.env",
+            "justMyCode": false
         }
     ]
 }
