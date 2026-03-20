@@ -1,12 +1,7 @@
 agent:
   config:
-    agent: /Users/geoffreyharrazi/Documents/GitHub/idun-agent-template/langgraph-simple/agent/agent.py:graph
-    app_name: my_agent
-    memory_service:
-      type: in_memory
+    graph_definition: ./agent/agent.py:graph
     name: my-agent
-    session_service:
-      type: in_memory
   type: LANGGRAPH
 guardrails:
   input: []

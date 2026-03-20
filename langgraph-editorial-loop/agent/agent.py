@@ -1,15 +1,16 @@
 import os
-from typing import Literal, TypedDict
+from typing import Literal
 
 from dotenv import load_dotenv
+from langchain_core.messages import AIMessage
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langgraph.graph import END, START, StateGraph
+from langgraph.graph import END, START, MessagesState, StateGraph
 from pydantic import BaseModel, Field
 
 load_dotenv()
 
 
-class AgentState(TypedDict, total=False):
+class AgentState(MessagesState, total=False):
     topic: str
     context: str
     draft: str
@@ -41,6 +42,12 @@ reviewer_model = ChatGoogleGenerativeAI(
     google_api_key=os.getenv("GEMINI_API_KEY"),
 )
 reviewer_structured = reviewer_model.with_structured_output(ReviewDecision)
+
+
+def extract_topic(state: AgentState) -> dict[str, str]:
+    """Extract the topic from the user's message."""
+    topic = str(state["messages"][-1].content)
+    return {"topic": topic}
 
 
 def researcher(state: AgentState) -> dict[str, str]:
@@ -88,16 +95,25 @@ def reviewer(state: AgentState) -> dict[str, object]:
     return {"context": context, "status": status, "loop_count": loop_count}
 
 
+def finalize(state: AgentState) -> dict[str, list[AIMessage]]:
+    """Return the final draft as an AI message."""
+    draft = state.get("draft", state.get("context", ""))
+    return {"messages": [AIMessage(content=str(draft))]}
+
+
 def route_graph(state: AgentState) -> str:
     return state.get("status", "done")
 
 
 workflow = StateGraph(AgentState)
+workflow.add_node("extract_topic", extract_topic)
 workflow.add_node("researcher", researcher)
 workflow.add_node("writer", writer)
 workflow.add_node("reviewer", reviewer)
+workflow.add_node("finalize", finalize)
 
-workflow.add_edge(START, "researcher")
+workflow.add_edge(START, "extract_topic")
+workflow.add_edge("extract_topic", "researcher")
 workflow.add_edge("researcher", "writer")
 workflow.add_edge("writer", "reviewer")
 
@@ -107,8 +123,9 @@ workflow.add_conditional_edges(
     {
         "needs_research": "researcher",
         "drafting": "writer",
-        "done": END,
+        "done": "finalize",
     },
 )
+workflow.add_edge("finalize", END)
 
-graph = workflow.compile()
+graph = workflow

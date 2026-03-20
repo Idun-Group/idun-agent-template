@@ -7,6 +7,6 @@ root_agent = LlmAgent(
     model='gemini-2.5-flash',
     name='webagents',
     description="Agent that can give information.",
-    instruction="You are a helpful assistant that can help with giving information. Use tool fetch (ONLY IF AVAILABLE) to get information from an url.",
+    instruction="You are a helpful assistant. Use any available tools to answer the user's question.",
     tools=tools,
 )

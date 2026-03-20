@@ -1,6 +1,6 @@
 agent:
   config:
-    agent: /Users/geoffreyharrazi/Documents/GitHub/idun-agent-template/langgraph-copy-paste/agent/agent.py:graph
+    agent: ./agent/agent.py:workflow
     app_name: copy_paste_agent
     memory_service:
       type: in_memory

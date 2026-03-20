@@ -8,7 +8,7 @@ def copy_requested_file(user_text: str, source_dir: Path, target_dir: Path) -> s
     if not match:
         return "Invalid command. Use: copy <filename>"
 
-    filename = match.group(1).strip()
+    filename = match.group(1).strip().strip("'\"")
     if not filename or ".." in filename or Path(filename).is_absolute():
         return "Invalid filename."
 

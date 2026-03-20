@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "validators": {
+    "guardrails/ban_list": {
+      "import_path": "guardrails_grhub_ban_list",
+      "exports": [
+        "BanList"
+      ],
+      "installed_at": "2026-03-20T17:17:15.355906+00:00",
+      "package_name": "guardrails-grhub-ban-list"
+    },
+    "guardrails/detect_pii": {
+      "import_path": "guardrails_grhub_detect_pii",
+      "exports": [
+        "DetectPII"
+      ],
+      "installed_at": "2026-03-20T17:17:20.381353+00:00",
+      "package_name": "guardrails-grhub-detect-pii"
+    }
+  }
+}
