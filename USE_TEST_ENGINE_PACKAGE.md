@@ -12,6 +12,11 @@ uv build --no-sources
 
 python -m pip install --upgrade pip
 python -m pip install \
+  /Users/geoffreyharrazi/Documents/GitHub/idun-agent-platform/libs/idun_agent_engine/dist/*.whl
+
+OLD:
+python -m pip install --upgrade pip
+python -m pip install \
   /Users/geoffreyharrazi/Documents/GitHub/idun-agent-platform/libs/idun_agent_schema/dist/*.whl \
   /Users/geoffreyharrazi/Documents/GitHub/idun-agent-platform/libs/idun_agent_engine/dist/*.whl
 

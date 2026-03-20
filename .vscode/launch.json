@@ -112,6 +112,22 @@
             "cwd": "${workspaceFolder}/langgraph-structured",
             "envFile": "${workspaceFolder}/langgraph-structured/.env",
             "justMyCode": false
+        },
+        {
+            "name": "Serve langgraph-editorial-loop agent",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/.venv/bin/idun",
+            "args": [
+                "agent",
+                "serve",
+                "--source",
+                "manager"
+            ],
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}/langgraph-editorial-loop",
+            "envFile": "${workspaceFolder}/langgraph-editorial-loop/.env",
+            "justMyCode": false
         }
     ]
 }
