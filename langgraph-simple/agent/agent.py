@@ -18,7 +18,7 @@ llm = ChatGoogleGenerativeAI(
 )
 
 
-def analyze_step(state: AgentState) -> dict[str, str]:
+def analyze_step(state: MessagesState) -> dict[str, str]:
     """Step 1: create a short plan before answering."""
     user_message = str(state["messages"][-1].content)
     plan_prompt = [
@@ -50,7 +50,7 @@ def answer_step(state: AgentState) -> dict[str, list[AIMessage]]:
     return {"messages": [AIMessage(content=str(response))]}
 
 
-workflow = StateGraph(AgentState)
+workflow = StateGraph(AgentState, input_schema=MessagesState, output_schema=MessagesState)
 workflow.add_node("analyze", analyze_step)
 workflow.add_node("answer", answer_step)
 workflow.add_edge(START, "analyze")
